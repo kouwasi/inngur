@@ -10,5 +10,6 @@ generator client {
 model Post {
   id Int @id @default(autoincrement())
   title String?
+  image_name String
   createdAt DateTime @default(now())
 }

@@ -22,9 +22,9 @@ const Home = () => {
 
   return (
     <Layout title="Inngur">
-      <div className="flex flex-col lg:flex-row flex-wrap">
+      <div className="flex flex-col lg:flex-row lg:flex-wrap flex-initial">
         {data.posts.map((post, index) => (
-          <div className="flex-1 m-2" key={index}>
+          <div className="flex-auto m-2" key={index}>
             <PostCard post={post}></PostCard>
           </div>
         ))}

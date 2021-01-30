@@ -38,3 +38,5 @@ server/database.json
 server/.upload
 server/public/icons/*
 !server/public/icons/dummy.svg
+server/public/posts/*
+!server/public/posts/.keep

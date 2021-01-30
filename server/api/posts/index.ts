@@ -1,11 +1,12 @@
-import { Post } from '@prisma/client'
+import { PostResponse } from '$/types'
 
 export type Methods = {
   get: {
-    resBody: { posts: Post[] }
+    resBody: { posts: PostResponse[] }
   }
   post: {
-    reqBody: { post: Pick<Post, 'title'> }
-    resBody: Post
+    reqFormat: FormData
+    reqBody: { title: string; image: Blob }
+    resBody: PostResponse
   }
 }

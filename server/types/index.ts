@@ -1,3 +1,5 @@
+import { Post } from '@prisma/client'
+
 export type UserInfo = {
   id: string
   name: string
@@ -6,4 +8,8 @@ export type UserInfo = {
 
 export type AuthHeader = {
   authorization: string
+}
+
+export type PostResponse = Post & {
+  image_url: string
 }
