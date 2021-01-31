@@ -7,7 +7,7 @@ type Props = {
 const PostCard = ({ post }: Props) => (
   <div className="rounded bg-blue-100 shadow-md">
     <img src={post.image_url} className="rounded w-full h-auto"></img>
-    <div className="py-2 px-2">
+    <div className="py-2 px-2 break-all">
       <p>{post.title}</p>
     </div>
   </div>

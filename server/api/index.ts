@@ -1,3 +1,4 @@
 export type Methods = {
-  get: any // FIXME: これフレームワークの制約で消さないのなんとかしろ
+  // FIXME: これフレームワークの制約で消さないのなんとかしろ
+  get: any
 }
