@@ -12,7 +12,7 @@ const Button = ({
 >) => (
   <button
     className={classNames(
-      `text-white font-semibold rounded-lg shadow-md ${
+      `py-2 px-4 text-white font-semibold rounded-lg shadow-md ${
         disabled ? 'bg-gray-300' : 'bg-green-500'
       }`,
       className

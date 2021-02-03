@@ -15,7 +15,7 @@ const Layout = ({ children, title }: Props) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <Header />
-    <div className="container pt-8">{children}</div>
+    <div className="container py-8">{children}</div>
     <footer>
       <hr />
       <span>I&apst;m here to stay (Footer)</span>
