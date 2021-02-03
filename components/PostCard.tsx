@@ -5,11 +5,13 @@ type Props = {
 }
 
 const PostCard = ({ post }: Props) => (
-  <div className="rounded bg-blue-100 shadow-md">
+  <div className="rounded bg-white shadow-md">
     <img src={post.image_url} className="rounded w-full h-auto"></img>
-    <div className="py-2 px-2 break-all">
-      <p>{post.title}</p>
-    </div>
+    {post.title != null ? (
+      <div className="py-2 px-2 break-all">
+        <p>{post.title}</p>
+      </div>
+    ) : null}
   </div>
 )
 

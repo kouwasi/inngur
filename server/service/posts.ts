@@ -10,7 +10,8 @@ const postsDirecotry = 'public/posts'
 export const createPostImageUrl = (name: string) =>
   `${API_ORIGIN}${BASE_PATH}/posts/${name}`
 
-export const getPosts = () => prisma.post.findMany()
+export const getPosts = () =>
+  prisma.post.findMany({ orderBy: [{ createdAt: 'desc' }] })
 
 export const createPost = async (title: string, imageFile: Multipart) => {
   const imageName = `${Date.now()}${path.extname(imageFile.filename)}`
