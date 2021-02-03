@@ -1,4 +1,4 @@
-import { PostResponse } from '$/types'
+import { PostRequest, PostResponse } from '$/types'
 
 export type Methods = {
   get: {
@@ -6,7 +6,7 @@ export type Methods = {
   }
   post: {
     reqFormat: FormData
-    reqBody: { title: string; image: Blob }
+    reqBody: PostRequest
     resBody: PostResponse
   }
 }

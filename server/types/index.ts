@@ -13,3 +13,8 @@ export type AuthHeader = {
 export type PostResponse = Post & {
   image_url: string
 }
+
+export type PostRequest = {
+  title: string
+  image: Blob
+}
