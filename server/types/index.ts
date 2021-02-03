@@ -14,7 +14,7 @@ export type PostResponse = Post & {
   image_url: string
 }
 
-export type PostRequest = {
+export type CreatePostRequest = {
   title: string
   image: Blob
 }
