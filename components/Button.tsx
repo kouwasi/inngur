@@ -1,12 +1,22 @@
-import React, { ReactNode } from 'react'
+import React, { DetailedHTMLProps, ButtonHTMLAttributes } from 'react'
+import classNames from 'classnames'
 
-type Props = {
-  children?: ReactNode
-}
-
-const Button = ({ children, ...props }: Props) => (
+const Button = ({
+  children,
+  disabled,
+  className,
+  ...props
+}: DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>) => (
   <button
-    className="py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md"
+    className={classNames(
+      `text-white font-semibold rounded-lg shadow-md ${
+        disabled ? 'bg-gray-300' : 'bg-green-500'
+      }`,
+      className
+    )}
     {...props}
   >
     {children}
