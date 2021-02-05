@@ -6,7 +6,7 @@ import { API_ORIGIN, BASE_PATH } from './envValues'
 import { PostResponse } from '$/types'
 
 const prisma = new PrismaClient()
-const postsDirecotry = 'public/posts'
+const postsDirecotry = 'public/post_images'
 
 export const createPostImageUrl = (name: string) =>
   `${API_ORIGIN}${BASE_PATH}/post_images/${name}`

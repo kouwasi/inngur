@@ -7,8 +7,11 @@ import { Field, Form } from 'react-final-form'
 import Button from '~/components/Button'
 import { CreatePostRequest } from '~/server/types'
 import classNames from 'classnames'
+import { useRouter } from 'next/dist/client/router'
 
 const NewPost = () => {
+  const router = useRouter()
+
   const [imageFile, setImageFile] = useState<File>()
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     setImageFile(acceptedFiles[0])
@@ -33,7 +36,7 @@ const NewPost = () => {
     data.image = imageFile as Blob
     await apiClient.posts
       .$post({ body: data })
-      .then(() => alert('でけた'))
+      .then(() => router.push('/'))
       .catch((e) => alert(e))
   }
 
@@ -65,6 +68,7 @@ const NewPost = () => {
                 'flex justify-center items-center bg-gray-100 rounded',
                 { 'animate-pulse': submitting }
               )}
+              style={{ height: 'calc(100vh / 2)' }}
               {...getRootProps()}
             >
               <input name="image" {...getInputProps()} />

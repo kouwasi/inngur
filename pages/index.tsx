@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import useAspidaSWR from '@aspida/swr'
 import { apiClient } from '~/utils/apiClient'
 import Layout from '~/components/Layout'
 import PostCard from '~/components/PostCard'
+import { useRouter } from 'next/dist/client/router'
 
 const Home = () => {
   const { data: data, error } = useAspidaSWR(apiClient.posts)
+  const router = useRouter()
+
+  // なんかLinkが使えないからonClickで実装してる
+  const handleClick = useCallback((id: number) => {
+    router.push(`/posts/${id}`)
+  }, [])
 
   if (error)
     return (
@@ -24,7 +31,13 @@ const Home = () => {
     <Layout title="Inngur">
       <div className="flex flex-col lg:flex-row lg:flex-wrap flex-initial">
         {data.posts.map((post, index) => (
-          <div className="flex-auto m-2" key={index}>
+          <div
+            className="flex-auto m-2"
+            key={index}
+            onClick={() => {
+              handleClick(post.id)
+            }}
+          >
             <PostCard post={post}></PostCard>
           </div>
         ))}
