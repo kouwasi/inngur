@@ -7,7 +7,7 @@ import fastifyJwt from 'fastify-jwt'
 import { JWT_SECRET, SERVER_PORT, BASE_PATH } from './service/envValues'
 import server from './$server'
 
-const fastify = Fastify()
+const fastify = Fastify({ logger: true })
 
 fastify.register(helmet)
 fastify.register(cors)
