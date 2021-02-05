@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useRouter } from 'next/dist/client/router'
 import Layout from '~/components/Layout'
 import PostCard from '~/components/PostCard'
