@@ -25,6 +25,7 @@
     "@aspida/swr": "^1.2.1",
     "autoprefixer": "^10.2.3",
     "axios": "^0.21.1",
+    "browser-image-compression": "^1.0.14",
     "class-validator": "^0.13.1",
     "classnames": "^2.2.6",
     "final-form": "^4.20.1",

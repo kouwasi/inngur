@@ -8,6 +8,7 @@ import Button from '~/components/Button'
 import { CreatePostRequest } from '~/server/types'
 import classNames from 'classnames'
 import { useRouter } from 'next/dist/client/router'
+import imageCompression from 'browser-image-compression'
 
 const NewPost = () => {
   const router = useRouter()
@@ -43,7 +44,15 @@ const NewPost = () => {
   }, [fileRejections])
 
   const onSubmit = async (data: CreatePostRequest) => {
-    data.image = imageFile as Blob
+    if (imageFile == undefined) return
+
+    const compressedImageFile = await imageCompression(imageFile, {
+      maxSizeMB: 0.8,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true
+    }).catch((e) => alert(e))
+
+    data.image = compressedImageFile as Blob
     await apiClient.posts
       .$post({ body: data })
       .then(() => router.push('/'))
