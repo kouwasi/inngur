@@ -31,13 +31,8 @@ const Home = () => {
     <Layout title="Inngur">
       <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-2">
         {data.posts.map((post, index) => (
-          <div
-            key={index}
-            onClick={() => {
-              handleClick(post.id)
-            }}
-          >
-            <PostCard post={post}></PostCard>
+          <div key={index}>
+            <PostCard post={post} onClick={handleClick}></PostCard>
           </div>
         ))}
       </div>
