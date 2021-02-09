@@ -29,10 +29,9 @@ const Home = () => {
 
   return (
     <Layout title="Inngur">
-      <div className="flex flex-col lg:flex-row lg:flex-wrap flex-initial">
+      <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-2">
         {data.posts.map((post, index) => (
           <div
-            className="flex-auto m-2"
             key={index}
             onClick={() => {
               handleClick(post.id)

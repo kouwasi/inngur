@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Layout from '~/components/Layout'
 import { useDropzone } from 'react-dropzone'
 import { apiClient } from '../../utils/apiClient'
@@ -11,10 +11,20 @@ import { useRouter } from 'next/dist/client/router'
 
 const NewPost = () => {
   const router = useRouter()
-
+  const imageRef = useRef<HTMLImageElement>(null)
   const [imageFile, setImageFile] = useState<File>()
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    setImageFile(acceptedFiles[0])
+    const file = acceptedFiles[0]
+    const reader = new FileReader()
+
+    reader.readAsDataURL(file)
+    reader.onload = () => {
+      if (imageRef.current) {
+        imageRef.current.src = reader.result as string
+      }
+    }
+
+    setImageFile(file)
   }, [])
 
   const {
@@ -72,7 +82,20 @@ const NewPost = () => {
               {...getRootProps()}
             >
               <input name="image" {...getInputProps()} />
-              {isDragActive ? <p>Drop a file here ...</p> : <FaFileUpload />}
+              {imageFile == null ? (
+                isDragActive ? (
+                  <p>Drop a file here ...</p>
+                ) : (
+                  <FaFileUpload />
+                )
+              ) : (
+                <div
+                  className="p-2 w-full flex justify-center"
+                  style={{ height: 'calc(100vh / 2)' }}
+                >
+                  <img ref={imageRef} className="h-full" />
+                </div>
+              )}
             </div>
 
             <div className="flex justify-center">
