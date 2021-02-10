@@ -9,6 +9,7 @@ import { CreatePostRequest } from '~/server/types'
 import classNames from 'classnames'
 import { useRouter } from 'next/dist/client/router'
 import imageCompression from 'browser-image-compression'
+import { mutate } from 'swr'
 
 const NewPost = () => {
   const router = useRouter()
@@ -52,9 +53,12 @@ const NewPost = () => {
       useWebWorker: true
     }).catch((e) => alert(e))
 
-    data.image = compressedImageFile as Blob
-    await apiClient.posts
-      .$post({ body: data })
+    await Promise.all([
+      apiClient.posts.$post({
+        body: { ...data, image: compressedImageFile as Blob }
+      }),
+      mutate('api/posts') // なんか違う気がする... APIの定義を参照してrevalidationしたい
+    ])
       .then(() => router.push('/'))
       .catch((e) => alert(e))
   }
